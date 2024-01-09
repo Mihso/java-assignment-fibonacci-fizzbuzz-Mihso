@@ -24,7 +24,22 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given index is less than zero
      */
     public static int atIndex(int i) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+    	Integer previous = 1;
+    	Integer value = 1;
+    	if(i < 0) {
+    		throw new IllegalArgumentException();
+    	}
+    	
+    	if(i > 1) {
+    		for(Integer j = 2; j < i; j++) {
+    			value += previous;
+    			previous += value;
+    		}
+    	}
+    	else {
+    		value = 1;
+    	}
+    	return value;
     }
 
     /**
@@ -38,7 +53,17 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+    	if(start < 0 || end < 0 || end < start) {
+        	throw new IllegalArgumentException();
+        }
+        int[] values = new int[end-start];
+        
+        for(Integer i = 0; i< values.length; i++) {
+        	values[i] = atIndex(i+start);
+        }
+        
+        return values;
+        
     }
 
     /**

@@ -57,14 +57,14 @@ public class FizzBuzz {
         	return null;
         }
         else if(divides(n,5) && divides(n,3)) {
-        	Message = "15: FizzBuzz";
+        	Message = n + ": FizzBuzz";
         }
         else {
         	if(divides(n,3)){
-        		Message = "3: Fizz";
+        		Message = n +": Fizz";
         	}
         	else {
-        		Message = "5: Buzz";
+        		Message = n +": Buzz";
         	}
         }
         return Message;
@@ -81,15 +81,22 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-    	Integer length = end - start+1;
+    	Integer length = end - start;
     	if(length < 0) {
     		throw new IllegalArgumentException();
     	}
-    	String[] Messages = new String[length];
+    	String[] Messages = new String[0];
         
     	Integer tracker = start;
     	for(Integer i = 0; i < length; i++, tracker++) {
-    		Messages[i] = message(tracker);
+    		if(message(tracker) != null){
+    			String[] temp = Messages;
+    			Messages = new String[temp.length + 1];
+    			for(Integer J = 0; J < temp.length; J++) {
+    				Messages[J] = temp[J];
+    			}
+    			Messages[Messages.length-1] = message(tracker);
+    		}
     	}
     	
     	return Messages;
