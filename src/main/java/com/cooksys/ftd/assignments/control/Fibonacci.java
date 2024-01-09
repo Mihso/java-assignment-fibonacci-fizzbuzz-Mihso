@@ -26,20 +26,22 @@ public class Fibonacci {
     public static int atIndex(int i) throws IllegalArgumentException {
     	Integer previous = 1;
     	Integer value = 1;
+    	Integer finaly = 0;
     	if(i < 0) {
     		throw new IllegalArgumentException();
     	}
     	
     	if(i > 1) {
-    		for(Integer j = 2; j < i; j++) {
-    			value += previous;
-    			previous += value;
+    		for(Integer j = 2; j <= i; j++) {
+    			finaly = value + previous;
+    			previous = value;
+    			value = finaly;
     		}
     	}
     	else {
-    		value = 1;
+    		finaly = 1;
     	}
-    	return value;
+    	return finaly;
     }
 
     /**
@@ -74,6 +76,13 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new MissingImplementationException();
-    }
+    	if(count < 0) {
+        	throw new IllegalArgumentException();
+        }
+        int[] finaly = new int[count];
+    	for(int a = 0; a < count; a++) {
+    		finaly[a] = atIndex(a);
+    	}
+        return finaly;
+        }
 }
