@@ -87,8 +87,9 @@ public class FizzBuzz {
     	}
     	String[] Messages = new String[length];
         
-    	for(Integer i = start; i < end; i++) {
-    		Messages[i] = message(i);
+    	Integer tracker = start;
+    	for(Integer i = 0; i < length; i++, tracker++) {
+    		Messages[i] = message(tracker);
     	}
     	
     	return Messages;
