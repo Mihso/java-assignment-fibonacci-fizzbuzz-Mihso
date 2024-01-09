@@ -27,7 +27,17 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+        
+    	if(b == 0) {
+            throw new IllegalArgumentException();
+    	}
+    	
+    	if(a % b == 0){
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
 
     /**
@@ -42,7 +52,22 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new MissingImplementationException();
+        String Message = "";
+        if(!divides(n,5) && !divides(n,3)) {
+        	return null;
+        }
+        else if(divides(n,5) && divides(n,3)) {
+        	Message = "15: FizzBuzz";
+        }
+        else {
+        	if(divides(n,3)){
+        		Message = "3: Fizz";
+        	}
+        	else {
+        		Message = "5: Buzz";
+        	}
+        }
+        return Message;
     }
 
     /**
@@ -56,7 +81,17 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+    	Integer length = end - start+1;
+    	if(length < 0) {
+    		throw new IllegalArgumentException();
+    	}
+    	String[] Messages = new String[length];
+        
+    	for(Integer i = start; i < end; i++) {
+    		Messages[i] = message(i);
+    	}
+    	
+    	return Messages;
     }
 
     /**
@@ -64,7 +99,11 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new MissingImplementationException();
+        String[] values = messages(1,116);
+        
+        for(Integer i = 0; i < values.length; i++) {
+        	System.out.println(values[i]);
+        }
     }
 
 }
